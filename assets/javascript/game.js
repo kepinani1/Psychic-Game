@@ -14,6 +14,7 @@ var losses = 0;
 var guesses = 10;
 var lettersGuessed = [];
 var computerGuess = [];
+var userGuess;
 
 window.onload = function () {
     var compGuess = ranOptions[Math.floor(Math.random() * ranOptions.length)];
@@ -22,20 +23,22 @@ window.onload = function () {
 }
 
 document.onkeyup = function (event) {
-    var userGuess = event.key;
-    lettersGuessed.push(userGuess);
+    userGuess = event.key;
+   lettersGuessed.textContent=lettersGuessed;
+   lettersGuessed.push(userGuess);
+    console.log(userGuess);
     console.log(computerGuess);
 }
 
-if (userGuess === computerGuess) && (guesses <= 10)) {
-    wins++;
+if (userGuess === computerGuess && guesses <= 10) {
+    wins++; //could not get wins, guesses, and losses to change
     guesses--;
-}else (userGuess !== computerGuess) && (guesses > 10)) {
+} else if (userGuess !== computerGuess && guesses > 10) {
     losses++;
     guesses--;
 }
 
-function reset() {
+function reset() { //I am not sure if game is actually resetting here
     wins = 0;
     losses = 0;
     guesses = 10;
@@ -49,5 +52,5 @@ var html = "<h1>The Psychic Game</h1>" +
     "<p>Wins: " + wins + "</p>" +
     "<p>Losses: " + losses + "</p>" +
     "<p>Guesses: " + guesses + "</p>" +
-    "<p>Your Guesses so far: " + lettersGuessed + "</p>";
+    "<p>Your Guesses so far: " + lettersGuessed + "</p>"; //Despite referencing letterGuessed, I am unable to display what the user inputs onto the html page
 document.querySelector('#game').innerHTML = html;
